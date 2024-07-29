@@ -13,7 +13,7 @@
     "@coinbase/onchainkit": "^0.26.1",
     "dotenv": "^16.4.5",
     "encoding": "^0.1.13",
-    "next": "13.5.4",
+    "next": "14.1.1",
     "react": "^18",
     "react-dom": "^18",
     "web3-eth-contract": "^4.6.0",
