@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@coinbase/onchainkit/*": ["node_modules/@coinbase/onchainkit/*"]
+      "@coinbase/onchainkit/*": ["./node_modules/@coinbase/onchainkit/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
