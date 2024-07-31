@@ -35,13 +35,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const patron = searchParams.get("patron");
 
   if (!patron)
-    return NextResponse.next({status: 400});
+    return NextResponse.json({error: "patron not defined"}, {status: 400});
 
   const body = await req.json();
   const response = await validateFramesMessage(body);
 
   if (!response.isValid || !response.message)
-    return NextResponse.next({status: 400});
+    return NextResponse.json({error: "invalid farcaster message"},{status: 400});
 
   const frameActionBody = response.message.data.frameActionBody
 
@@ -52,10 +52,10 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (state.isCustom) {
     const input = parseText(inputText)
     if (input == undefined)
-      return NextResponse.next({status: 400});
-    amount = parseInt(input);
+      return NextResponse.json({error: "Amount missing"}, {status: 400});
+    amount = parseFloat(input);
     if (isNaN(amount))
-      return NextResponse.next({status: 400});
+      return NextResponse.json({error: "Amount is not a number"}, {status: 400});
   } else {
     amount = priceFromIndex(buttonIndex as 1|2|3)
   }
