@@ -27,6 +27,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return sendError("Invalid frame message");
 
   const frameActionBody = response.message.data.frameActionBody;
+
+  const url = parseText(frameActionBody.url) as string;
+  const creatorAux = new URL(url).searchParams.get("creator");
+  if (creatorAux !== creator)
+    return NextResponse.json({error: "creator addresses do not match"},{status: 400});
+
   const button = frameActionBody.buttonIndex;
   const state = parseState(frameActionBody.state)
 

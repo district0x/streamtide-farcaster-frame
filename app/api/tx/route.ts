@@ -45,6 +45,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   const frameActionBody = response.message.data.frameActionBody
 
+  const url = parseText(frameActionBody.url) as string;
+  const creatorAux = new URL(url).searchParams.get("creator");
+  if (creatorAux !== creator)
+    return NextResponse.json({error: "creator addresses do not match"},{status: 400});
+
   const {buttonIndex, inputText} = frameActionBody;
   const state = parseState(frameActionBody.state);
 
