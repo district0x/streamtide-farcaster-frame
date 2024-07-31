@@ -32,10 +32,10 @@ init(process.env.AIRSTACK_API_KEY)
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const searchParams = req.nextUrl.searchParams
-  const patron = searchParams.get("patron");
+  const creator = searchParams.get("creator");
 
-  if (!patron)
-    return NextResponse.json({error: "patron not defined"}, {status: 400});
+  if (!creator)
+    return NextResponse.json({error: "creator not defined"}, {status: 400});
 
   const body = await req.json();
   const response = await validateFramesMessage(body);
@@ -65,7 +65,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const value = toWei(amount / parseFloat(ethPrice), "ether" );
 
   const contract = new Contract(abi);
-  const calldata = contract.methods.donate([patron], [value]).encodeABI();
+  const calldata = contract.methods.donate([creator], [value]).encodeABI();
 
   return NextResponse.json({
     chainId: `eip155:${process.env.NETWORK_ID}`,

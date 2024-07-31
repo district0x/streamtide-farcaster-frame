@@ -13,10 +13,10 @@ function sendError(message: string) {
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const searchParams = req.nextUrl.searchParams
-  const patron = searchParams.get("patron");
+  const creator = searchParams.get("creator");
 
-  if (!patron)
-    return sendError("Invalid patron address");
+  if (!creator)
+    return sendError("Invalid creator address");
 
   const body: FrameRequest = await req.json();
 
@@ -33,21 +33,21 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   try {
     if (state.isCustom) {  // we are in the customDonation frame
       if (button == 2) {  // Clicked go back button
-        return new NextResponse(getFrameHtmlResponse(initialFrame(patron)));
+        return new NextResponse(getFrameHtmlResponse(initialFrame(creator)));
       }
     } else if (state.isTxCallback) { // we are in the tx callback frame
       if (button == 2) {  // Clicked restart button
-        return new NextResponse(getFrameHtmlResponse(initialFrame(patron)));
+        return new NextResponse(getFrameHtmlResponse(initialFrame(creator)));
       }
     } else { // we are in the initial frame
       if (button === 4) {  // clicked the Custom Donation button
-        return new NextResponse(getFrameHtmlResponse(customDonationFrame(patron)));
+        return new NextResponse(getFrameHtmlResponse(customDonationFrame(creator)));
       }
     }
 
     const transactionId = parseHex(frameActionBody.transactionId);
     if (transactionId) {
-      return new NextResponse(getFrameHtmlResponse(transactionCallbackFrame(patron, transactionId)));
+      return new NextResponse(getFrameHtmlResponse(transactionCallbackFrame(creator, transactionId)));
     }
 
     // if we get here, something unexpected happened

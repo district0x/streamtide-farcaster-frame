@@ -20,16 +20,16 @@ const metadata = {
 export async function generateMetadata(
   { searchParams }: { searchParams: { [key: string]: string | string[] | undefined } } ): Promise<Metadata> {
 
-  const patron = searchParams["patron"];
-  if (patron === undefined || Array.isArray(patron)) {
-    // if patron parameter is missing, we send a 404 error
+  const creator = searchParams["creator"];
+  if (creator === undefined || Array.isArray(creator)) {
+    // if creator parameter is missing, we send a 404 error
     notFound();
   }
 
   return {
     ...metadata,
     other: {
-      ...getFrameMetadata(initialFrame(patron)),
+      ...getFrameMetadata(initialFrame(creator)),
     },
   }
 }

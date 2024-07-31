@@ -1,9 +1,9 @@
 import {FrameButtonMetadata, FrameMetadataType} from "@coinbase/onchainkit/esm/frame";
 
-function donateButton(patron: string) : FrameButtonMetadata {
+function donateButton(creator: string) : FrameButtonMetadata {
   return {
-    target: `${process.env.NEXT_PUBLIC_URL}/api/tx?patron=${patron}`,
-    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?patron=${patron}`,
+    target: `${process.env.NEXT_PUBLIC_URL}/api/tx?creator=${creator}`,
+    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?creator=${creator}`,
     action: "tx",
     label: 'donate',
   }
@@ -19,19 +19,19 @@ export function priceFromIndex(index: 1|2|3): number {
   return BUTTON_PRICES[`button_${index}`];
 }
 
-export function initialFrame(patron: string) : FrameMetadataType {
+export function initialFrame(creator: string) : FrameMetadataType {
   return {
     buttons: [
       {
-        ...donateButton(patron),
+        ...donateButton(creator),
         label: `Tip ${priceFromIndex(1)}$`,
       },
       {
-        ...donateButton(patron),
+        ...donateButton(creator),
         label: `Tip ${priceFromIndex(2)}$`,
       },
       {
-        ...donateButton(patron),
+        ...donateButton(creator),
         label: `Tip ${priceFromIndex(3)}$`,
       },
       {
@@ -42,17 +42,17 @@ export function initialFrame(patron: string) : FrameMetadataType {
       src: `${process.env.NEXT_PUBLIC_URL}/streamtide-farcaster.png`,
       aspectRatio: "1:1"
     },
-    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?patron=${patron}`,
+    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?creator=${creator}`,
     state: {}
   }
 }
 
-export function customDonationFrame(patron: string) : FrameMetadataType {
+export function customDonationFrame(creator: string) : FrameMetadataType {
   return {
     input: {text: "Amount in $"},
     buttons: [
       {
-        ...donateButton(patron),
+        ...donateButton(creator),
         label: 'Tip',
       },
       {
@@ -63,12 +63,12 @@ export function customDonationFrame(patron: string) : FrameMetadataType {
       src: `${process.env.NEXT_PUBLIC_URL}/streamtide-farcaster.png`,
       aspectRatio: "1:1"
     },
-    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?patron=${patron}`,
+    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?creator=${creator}`,
     state: {isCustom: true}
   }
 }
 
-export function transactionCallbackFrame(patron: string, txId: string) : FrameMetadataType {
+export function transactionCallbackFrame(creator: string, txId: string) : FrameMetadataType {
   return {
     buttons: [
       {
@@ -84,7 +84,7 @@ export function transactionCallbackFrame(patron: string, txId: string) : FrameMe
       src: `${process.env.NEXT_PUBLIC_URL}/streamtide-farcaster.png`,
       aspectRatio: "1:1"
     },
-    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?patron=${patron}`,
+    postUrl: `${process.env.NEXT_PUBLIC_URL}/api/frame?creator=${creator}`,
     state: {isTxCallback: true}
   }
 }
