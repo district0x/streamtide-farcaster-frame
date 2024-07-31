@@ -70,18 +70,23 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const value = toWei(amount / parseFloat(ethPrice), "ether" );
 
   const contract = new Contract(abi);
-  const calldata = contract.methods.donate([creator], [value]).encodeABI();
+  try {
+    const calldata = contract.methods.donate([creator], [value]).encodeABI();
 
-  return NextResponse.json({
-    chainId: `eip155:${process.env.NETWORK_ID}`,
-    method: "eth_sendTransaction",
-    params: {
-      abi: abi,
-      to: process.env.ST_CONTRACT_ADDRESS,
-      value: value,
-      data: calldata
-    }
-  });
+    return NextResponse.json({
+      chainId: `eip155:${process.env.NETWORK_ID}`,
+      method: "eth_sendTransaction",
+      params: {
+        abi: abi,
+        to: process.env.ST_CONTRACT_ADDRESS,
+        value: value,
+        data: calldata
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({error: "Could not build transaction calldata"}, {status: 400});
+  }
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
