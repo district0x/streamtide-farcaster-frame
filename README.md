@@ -1,3 +1,5 @@
+**_NOTE:_** This repository has been archived as the Streamtide Farcaster Frame is now directly integrated into the [StreamTide repo](https://github.com/district0x/StreamTide).
+
 # Streamtide Farcaster Frame
 
 This is a [Farcaster Frame](https://docs.farcaster.xyz/developers/frames/) for making donations to [Streamtide](https://streamtide.io) users directly from any Farcaster app.
