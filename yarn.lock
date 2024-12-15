@@ -3284,9 +3284,9 @@ hmac-drbg@^1.0.1:
     minimalistic-crypto-utils "^1.0.1"
 
 hono@^4.1.0:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-4.5.1.tgz#a258710ffaba07d64580a0c112cba97c4319b606"
-  integrity sha512-6q8AugoWG5wlrjdGG8OFFiqEsPlPGjODjUik48sEJeko4Tae1UsLS2vUiYHLEJx1gJvOZa4BWkQC+urwDmkEvQ==
+  version "4.6.5"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-4.6.5.tgz#9d5a1ada5b40dc865e2d28c0bcc5d24cc755b9f1"
+  integrity sha512-qsmN3V5fgtwdKARGLgwwHvcdLKursMd+YOt69eGpl1dUCJb8mCd7hZfyZnBYjxCegBG7qkJRQRUy2oO25yHcyQ==
 
 http-shutdown@^1.2.2:
   version "1.2.2"
@@ -5162,7 +5162,6 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 strip-ansi@^6.0.0, strip-ansi@^6.0.1:
-  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
